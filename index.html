@@ -1,0 +1,164 @@
+---
+layout: default
+---
+
+
+<h1> Weather </h1>
+
+<p>Hello</p>
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+h1 {
+    border-bottom: 3px solid #cc9900;
+    color: #996600;
+    font-size: 30px;
+}
+table, th , td  {
+    border: 1px solid grey;
+    border-collapse: collapse;
+    padding: 5px;
+}
+table tr:nth-child(odd) {
+    background-color: #f1f1f1;
+}
+table tr:nth-child(even) {
+    background-color: #ffffff;
+}
+</style>
+</head>
+
+<body>
+
+<h1>DATA FROM JSON:</h1>
+<div id="id01"></div>
+
+<script>
+var xmlhttp = new XMLHttpRequest();
+var url = "http://api.openweathermap.org/data/2.5/forecast?q=Boston,us&mode=json&units=imperial&appid=874870f00e684038fc8ad82917ef3cfc";
+
+xmlhttp.onreadystatechange=function() {
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+        myFunction(xmlhttp.responseText);
+    }
+}
+xmlhttp.open("GET", url, true);
+xmlhttp.send();
+//
+function myFunction(response) {
+  var i = -1;
+  var out = "<table>";
+  var phase = "START";
+  var newPhase = "START";
+  var stack = [];
+  var weatherStack = []
+  JSON.parse(response, function(k, v) {
+    console.log(phase);
+    newPhase = phase;
+    stack.push(k);   
+    stack.push(v);      
+    if(phase == "START")
+    {
+      if(k == "city")
+      {
+        newPhase = "CITYINFO";
+      }
+    }
+    if(phase == "CITYINFO")
+    {
+      if(k == "dt")
+      {
+        out+= unstackCity(stack);
+        newPhase = "NEWWEATHER";
+      }
+    }
+    if(phase == "NEWWEATHER")
+    {
+
+      if(k == "temp")
+        newPhase = "GATHERDATA"
+    }
+    if(phase = "GATHERDATA")
+    {
+      if(k == "dt")
+        newPhase = "NEWWEATHER"
+    }
+    if(newPhase == "NEWWEATHER")
+    {
+      i = i + 1;
+      if(i>0)
+      {
+        out+= unstackWeather(stack, i);
+        stack = [];
+      }
+      //console.log(k+v);
+    }
+    phase = newPhase
+    return v;     
+  });
+  out += "</table>";
+  document.getElementById("id01").innerHTML = out;
+
+}
+function unstackCity(stack) {
+    var string = "<tr><td>CityInfo</td>";
+
+    var type = stack.shift();
+    var value = stack.shift();
+    while(type != undefined)
+    {
+      string+="<td>" + type + ", " + value + "</td>";
+      type = stack.shift();
+      value = stack.shift();
+    }
+
+    string+="</tr>";//</table><table>"
+    return string;              // The function returns the product of p1 and p2
+}
+
+function unstackWeather(stack, dayNum) {
+    var string = "<tr>";
+    var thing;
+    //string += "<td>Weather Event " + dayNum + "</td>";                    
+    var type = stack.shift();
+    var value = stack.shift();
+
+    var data = ["dt", "", "dt_txt", "sys", "pod", "rain", "3h", "wind", "deg", "speed", "clouds", "all", "weather", ]
+    var dateTime = "", weatherMain = "";
+    var i = 0, temp = 0, minTemp = 0, maxTemp = 0, pressure = 0, seasLevel = 0;
+    for(thing = 0; thing < stack.length; thing++)// while(type != undefined)
+    {
+      string+="<td>" + type + ", " + value + "</td>";
+      if(type == "dt_txt")
+        dateTime = value;
+      else if(type == "temp")
+        temp = value;
+      else if(type == "temp_min")
+        minTemp = value;
+      else if(type == "temp_max")
+        maxTemp = value;
+      else if(type == "pressure")
+        pressure = value;
+      else if(type == "sea_level")
+        seaLevel = value;
+      else if(type == "main")
+        seaLevel = value;
+      type = stack.shift();
+      value = stack.shift();
+      i++;
+    }
+    // string+="<td>" + dateTime + "</td>";
+    // string+="<td>Temperature: " + temp + "</td>";
+    // string+="<td>Pressure: " + pressure + "</td>";
+
+    string+="</tr>"
+    return string;              // The function returns the product of p1 and p2
+}
+
+</script>
+<h1>END OF DATA FROM JSON:</h1>
+
+</body>
+</html>

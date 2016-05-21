@@ -1,0 +1,1261 @@
+weatherdata: 
+ location: 
+  name: London
+  type: ""
+  country: US
+  timezone: ""
+  location: 
+   _altitude: 0
+   _latitude: "39.886452"
+   _longitude: "-83.44825"
+   _geobase: geonames
+   _geobaseid: 0
+ credit: ""
+ meta: 
+  lastupdate: ""
+  calctime: "0.015"
+  nextupdate: ""
+ sun: 
+  _rise: "2016-05-18T10:15:06"
+  _set: "2016-05-19T00:46:00"
+ forecast: 
+  time: 
+   - 
+   symbol: 
+     _number: 802
+     _name: "scattered clouds"
+     _var: 03d
+    precipitation: ""
+    windDirection: 
+     _deg: "24.0071"
+     _code: NNE
+     _name: "North-northeast"
+    windSpeed: 
+     _mps: "5.18"
+     _name: "Gentle Breeze"
+    temperature: 
+     _unit: celsius
+     _value: "18.47"
+     _min: "17.32"
+     _max: "18.47"
+    pressure: 
+     _unit: hPa
+     _value: "997.88"
+    humidity: 
+     _value: 78
+     _unit: "%"
+    clouds: 
+     _value: "scattered clouds"
+     _all: 32
+     _unit: "%"
+    _from: "2016-05-18T18:00:00"
+    _to: "2016-05-18T21:00:00"
+   - 
+   symbol: 
+     _number: 802
+     _name: "scattered clouds"
+     _var: 03n
+    precipitation: ""
+    windDirection: 
+     _deg: "23.0005"
+     _code: NNE
+     _name: "North-northeast"
+    windSpeed: 
+     _mps: "4.61"
+     _name: "Gentle Breeze"
+    temperature: 
+     _unit: celsius
+     _value: "16.78"
+     _min: "15.68"
+     _max: "16.78"
+    pressure: 
+     _unit: hPa
+     _value: "997.95"
+    humidity: 
+     _value: 68
+     _unit: "%"
+    clouds: 
+     _value: "scattered clouds"
+     _all: 36
+     _unit: "%"
+    _from: "2016-05-18T21:00:00"
+    _to: "2016-05-19T00:00:00"
+   - 
+   symbol: 
+     _number: 802
+     _name: "scattered clouds"
+     _var: 03n
+    precipitation: ""
+    windDirection: 
+     _deg: "14.5069"
+     _code: NNE
+     _name: "North-northeast"
+    windSpeed: 
+     _mps: "5.32"
+     _name: "Gentle Breeze"
+    temperature: 
+     _unit: celsius
+     _value: "12.58"
+     _min: "11.55"
+     _max: "12.58"
+    pressure: 
+     _unit: hPa
+     _value: "999.32"
+    humidity: 
+     _value: 67
+     _unit: "%"
+    clouds: 
+     _value: "scattered clouds"
+     _all: 36
+     _unit: "%"
+    _from: "2016-05-19T00:00:00"
+    _to: "2016-05-19T03:00:00"
+   - 
+   symbol: 
+     _number: 801
+     _name: "few clouds"
+     _var: 02n
+    precipitation: ""
+    windDirection: 
+     _deg: "19.5029"
+     _code: NNE
+     _name: "North-northeast"
+    windSpeed: 
+     _mps: "4.11"
+     _name: "Gentle Breeze"
+    temperature: 
+     _unit: celsius
+     _value: "9.17"
+     _min: "8.19"
+     _max: "9.17"
+    pressure: 
+     _unit: hPa
+     _value: "999.63"
+    humidity: 
+     _value: 66
+     _unit: "%"
+    clouds: 
+     _value: "few clouds"
+     _all: 24
+     _unit: "%"
+    _from: "2016-05-19T03:00:00"
+    _to: "2016-05-19T06:00:00"
+   - 
+   symbol: 
+     _number: 800
+     _name: "clear sky"
+     _var: 01n
+    precipitation: ""
+    windDirection: 
+     _deg: "18.0051"
+     _code: NNE
+     _name: "North-northeast"
+    windSpeed: 
+     _mps: "3.4"
+     _name: "Gentle Breeze"
+    temperature: 
+     _unit: celsius
+     _value: "6.82"
+     _min: "5.9"
+     _max: "6.82"
+    pressure: 
+     _unit: hPa
+     _value: "999.68"
+    humidity: 
+     _value: 69
+     _unit: "%"
+    clouds: 
+     _value: "clear sky"
+     _all: 0
+     _unit: "%"
+    _from: "2016-05-19T06:00:00"
+    _to: "2016-05-19T09:00:00"
+   - 
+   symbol: 
+     _number: 800
+     _name: "clear sky"
+     _var: 01d
+    precipitation: ""
+    windDirection: 
+     _deg: "6.00009"
+     _code: N
+     _name: North
+    windSpeed: 
+     _mps: "2.12"
+     _name: "Light breeze"
+    temperature: 
+     _unit: celsius
+     _value: "8.96"
+     _min: "8.11"
+     _max: "8.96"
+    pressure: 
+     _unit: hPa
+     _value: "1001.22"
+    humidity: 
+     _value: 72
+     _unit: "%"
+    clouds: 
+     _value: "clear sky"
+     _all: 0
+     _unit: "%"
+    _from: "2016-05-19T09:00:00"
+    _to: "2016-05-19T12:00:00"
+   - 
+   symbol: 
+     _number: 800
+     _name: "clear sky"
+     _var: 01d
+    precipitation: ""
+    windDirection: 
+     _deg: "32.0011"
+     _code: NNE
+     _name: "North-northeast"
+    windSpeed: 
+     _mps: "2.97"
+     _name: "Light breeze"
+    temperature: 
+     _unit: celsius
+     _value: "15.77"
+     _min: "14.98"
+     _max: "15.77"
+    pressure: 
+     _unit: hPa
+     _value: "1001.91"
+    humidity: 
+     _value: 86
+     _unit: "%"
+    clouds: 
+     _value: "clear sky"
+     _all: 0
+     _unit: "%"
+    _from: "2016-05-19T12:00:00"
+    _to: "2016-05-19T15:00:00"
+   - 
+   symbol: 
+     _number: 800
+     _name: "clear sky"
+     _var: 01d
+    precipitation: ""
+    windDirection: 
+     _deg: "36.5001"
+     _code: NE
+     _name: NorthEast
+    windSpeed: 
+     _mps: "4.26"
+     _name: "Gentle Breeze"
+    temperature: 
+     _unit: celsius
+     _value: "18.39"
+     _min: "17.66"
+     _max: "18.39"
+    pressure: 
+     _unit: hPa
+     _value: "1000.93"
+    humidity: 
+     _value: 78
+     _unit: "%"
+    clouds: 
+     _value: "clear sky"
+     _all: 0
+     _unit: "%"
+    _from: "2016-05-19T15:00:00"
+    _to: "2016-05-19T18:00:00"
+   - 
+   symbol: 
+     _number: 800
+     _name: "clear sky"
+     _var: 01d
+    precipitation: ""
+    windDirection: 
+     _deg: "38.0067"
+     _code: NE
+     _name: NorthEast
+    windSpeed: 
+     _mps: "3.8"
+     _name: "Gentle Breeze"
+    temperature: 
+     _unit: celsius
+     _value: "19.56"
+     _min: "18.89"
+     _max: "19.56"
+    pressure: 
+     _unit: hPa
+     _value: "999.85"
+    humidity: 
+     _value: 66
+     _unit: "%"
+    clouds: 
+     _value: "clear sky"
+     _all: 0
+     _unit: "%"
+    _from: "2016-05-19T18:00:00"
+    _to: "2016-05-19T21:00:00"
+   - 
+   symbol: 
+     _number: 800
+     _name: "clear sky"
+     _var: 01n
+    precipitation: ""
+    windDirection: 
+     _deg: "39.5032"
+     _code: NE
+     _name: NorthEast
+    windSpeed: 
+     _mps: "2.72"
+     _name: "Light breeze"
+    temperature: 
+     _unit: celsius
+     _value: "17.73"
+     _min: "17.13"
+     _max: "17.73"
+    pressure: 
+     _unit: hPa
+     _value: "999.69"
+    humidity: 
+     _value: 59
+     _unit: "%"
+    clouds: 
+     _value: "clear sky"
+     _all: 0
+     _unit: "%"
+    _from: "2016-05-19T21:00:00"
+    _to: "2016-05-20T00:00:00"
+   - 
+   symbol: 
+     _number: 800
+     _name: "clear sky"
+     _var: 02n
+    precipitation: ""
+    windDirection: 
+     _deg: "32.5011"
+     _code: NNE
+     _name: "North-northeast"
+    windSpeed: 
+     _mps: "2.86"
+     _name: "Light breeze"
+    temperature: 
+     _unit: celsius
+     _value: "11.93"
+     _min: "11.38"
+     _max: "11.93"
+    pressure: 
+     _unit: hPa
+     _value: "1000.74"
+    humidity: 
+     _value: 56
+     _unit: "%"
+    clouds: 
+     _value: "clear sky"
+     _all: 8
+     _unit: "%"
+    _from: "2016-05-20T00:00:00"
+    _to: "2016-05-20T03:00:00"
+   - 
+   symbol: 
+     _number: 802
+     _name: "scattered clouds"
+     _var: 03n
+    precipitation: ""
+    windDirection: 
+     _deg: "57.5049"
+     _code: ENE
+     _name: "East-northeast"
+    windSpeed: 
+     _mps: "3.75"
+     _name: "Gentle Breeze"
+    temperature: 
+     _unit: celsius
+     _value: "9.56"
+     _min: "9.07"
+     _max: "9.56"
+    pressure: 
+     _unit: hPa
+     _value: "1000.88"
+    humidity: 
+     _value: 62
+     _unit: "%"
+    clouds: 
+     _value: "scattered clouds"
+     _all: 44
+     _unit: "%"
+    _from: "2016-05-20T03:00:00"
+    _to: "2016-05-20T06:00:00"
+   - 
+   symbol: 
+     _number: 803
+     _name: "broken clouds"
+     _var: 04n
+    precipitation: ""
+    windDirection: 
+     _deg: "66.5007"
+     _code: ENE
+     _name: "East-northeast"
+    windSpeed: 
+     _mps: "4.06"
+     _name: "Gentle Breeze"
+    temperature: 
+     _unit: celsius
+     _value: 9
+     _min: "8.57"
+     _max: 9
+    pressure: 
+     _unit: hPa
+     _value: "1000.51"
+    humidity: 
+     _value: 60
+     _unit: "%"
+    clouds: 
+     _value: "broken clouds"
+     _all: 64
+     _unit: "%"
+    _from: "2016-05-20T06:00:00"
+    _to: "2016-05-20T09:00:00"
+   - 
+   symbol: 
+     _number: 804
+     _name: "overcast clouds"
+     _var: 04d
+    precipitation: ""
+    windDirection: 
+     _deg: "68.5003"
+     _code: ENE
+     _name: "East-northeast"
+    windSpeed: 
+     _mps: "2.13"
+     _name: "Light breeze"
+    temperature: 
+     _unit: celsius
+     _value: "11.03"
+     _min: "10.66"
+     _max: "11.03"
+    pressure: 
+     _unit: hPa
+     _value: "1001.32"
+    humidity: 
+     _value: 70
+     _unit: "%"
+    clouds: 
+     _value: "overcast clouds"
+     _all: 88
+     _unit: "%"
+    _from: "2016-05-20T09:00:00"
+    _to: "2016-05-20T12:00:00"
+   - 
+   symbol: 
+     _number: 804
+     _name: "overcast clouds"
+     _var: 04d
+    precipitation: ""
+    windDirection: 
+     _deg: "86.5026"
+     _code: E
+     _name: East
+    windSpeed: 
+     _mps: "4.56"
+     _name: "Gentle Breeze"
+    temperature: 
+     _unit: celsius
+     _value: "15.52"
+     _min: "15.21"
+     _max: "15.52"
+    pressure: 
+     _unit: hPa
+     _value: "1000.7"
+    humidity: 
+     _value: 73
+     _unit: "%"
+    clouds: 
+     _value: "overcast clouds"
+     _all: 92
+     _unit: "%"
+    _from: "2016-05-20T12:00:00"
+    _to: "2016-05-20T15:00:00"
+   - 
+   symbol: 
+     _number: 500
+     _name: "light rain"
+     _var: 10d
+    precipitation: 
+     _unit: 3h
+     _value: "0.025"
+     _type: rain
+    windDirection: 
+     _deg: "115.5"
+     _code: ESE
+     _name: "East-southeast"
+    windSpeed: 
+     _mps: "5.68"
+     _name: "Moderate breeze"
+    temperature: 
+     _unit: celsius
+     _value: "18.14"
+     _min: "17.89"
+     _max: "18.14"
+    pressure: 
+     _unit: hPa
+     _value: "999.48"
+    humidity: 
+     _value: 79
+     _unit: "%"
+    clouds: 
+     _value: "overcast clouds"
+     _all: 92
+     _unit: "%"
+    _from: "2016-05-20T15:00:00"
+    _to: "2016-05-20T18:00:00"
+   - 
+   symbol: 
+     _number: 500
+     _name: "light rain"
+     _var: 10d
+    precipitation: 
+     _unit: 3h
+     _value: "0.99"
+     _type: rain
+    windDirection: 
+     _deg: "110.503"
+     _code: ESE
+     _name: "East-southeast"
+    windSpeed: 
+     _mps: "5.78"
+     _name: "Moderate breeze"
+    temperature: 
+     _unit: celsius
+     _value: "16.02"
+     _min: "15.83"
+     _max: "16.02"
+    pressure: 
+     _unit: hPa
+     _value: "998.42"
+    humidity: 
+     _value: 81
+     _unit: "%"
+    clouds: 
+     _value: "overcast clouds"
+     _all: 92
+     _unit: "%"
+    _from: "2016-05-20T18:00:00"
+    _to: "2016-05-20T21:00:00"
+   - 
+   symbol: 
+     _number: 501
+     _name: "moderate rain"
+     _var: 10n
+    precipitation: 
+     _unit: 3h
+     _value: "8.71"
+     _type: rain
+    windDirection: 
+     _deg: "69.0053"
+     _code: ENE
+     _name: "East-northeast"
+    windSpeed: 
+     _mps: "5.86"
+     _name: "Moderate breeze"
+    temperature: 
+     _unit: celsius
+     _value: "13.12"
+     _min: 13
+     _max: "13.12"
+    pressure: 
+     _unit: hPa
+     _value: "997.3"
+    humidity: 
+     _value: 98
+     _unit: "%"
+    clouds: 
+     _value: "overcast clouds"
+     _all: 92
+     _unit: "%"
+    _from: "2016-05-20T21:00:00"
+    _to: "2016-05-21T00:00:00"
+   - 
+   symbol: 
+     _number: 501
+     _name: "moderate rain"
+     _var: 10n
+    precipitation: 
+     _unit: 3h
+     _value: "9.52"
+     _type: rain
+    windDirection: 
+     _deg: "77.0003"
+     _code: ENE
+     _name: "East-northeast"
+    windSpeed: 
+     _mps: "6.6"
+     _name: "Moderate breeze"
+    temperature: 
+     _unit: celsius
+     _value: "12.77"
+     _min: "12.71"
+     _max: "12.77"
+    pressure: 
+     _unit: hPa
+     _value: "995.81"
+    humidity: 
+     _value: 99
+     _unit: "%"
+    clouds: 
+     _value: "overcast clouds"
+     _all: 92
+     _unit: "%"
+    _from: "2016-05-21T00:00:00"
+    _to: "2016-05-21T03:00:00"
+   - 
+   symbol: 
+     _number: 501
+     _name: "moderate rain"
+     _var: 10n
+    precipitation: 
+     _unit: 3h
+     _value: "7.08"
+     _type: rain
+    windDirection: 
+     _deg: "87.0052"
+     _code: E
+     _name: East
+    windSpeed: 
+     _mps: "5.22"
+     _name: "Gentle Breeze"
+    temperature: 
+     _unit: celsius
+     _value: "12.95"
+     _min: "12.95"
+     _max: "12.95"
+    pressure: 
+     _unit: hPa
+     _value: "993.84"
+    humidity: 
+     _value: 99
+     _unit: "%"
+    clouds: 
+     _value: "overcast clouds"
+     _all: 100
+     _unit: "%"
+    _from: "2016-05-21T03:00:00"
+    _to: "2016-05-21T06:00:00"
+   - 
+   symbol: 
+     _number: 500
+     _name: "light rain"
+     _var: 10n
+    precipitation: 
+     _unit: 3h
+     _value: "2.35"
+     _type: rain
+    windDirection: 
+     _deg: "71.5011"
+     _code: ENE
+     _name: "East-northeast"
+    windSpeed: 
+     _mps: "3.92"
+     _name: "Gentle Breeze"
+    temperature: 
+     _unit: celsius
+     _value: "12.84"
+     _min: "12.84"
+     _max: "12.84"
+    pressure: 
+     _unit: hPa
+     _value: "992.66"
+    humidity: 
+     _value: 99
+     _unit: "%"
+    clouds: 
+     _value: "overcast clouds"
+     _all: 92
+     _unit: "%"
+    _from: "2016-05-21T06:00:00"
+    _to: "2016-05-21T09:00:00"
+   - 
+   symbol: 
+     _number: 500
+     _name: "light rain"
+     _var: 10d
+    precipitation: 
+     _unit: 3h
+     _value: "1.27"
+     _type: rain
+    windDirection: 
+     _deg: "47.5019"
+     _code: NE
+     _name: NorthEast
+    windSpeed: 
+     _mps: "3.88"
+     _name: "Gentle Breeze"
+    temperature: 
+     _unit: celsius
+     _value: "12.95"
+     _min: "12.95"
+     _max: "12.95"
+    pressure: 
+     _unit: hPa
+     _value: "993.03"
+    humidity: 
+     _value: 100
+     _unit: "%"
+    clouds: 
+     _value: "overcast clouds"
+     _all: 92
+     _unit: "%"
+    _from: "2016-05-21T09:00:00"
+    _to: "2016-05-21T12:00:00"
+   - 
+   symbol: 
+     _number: 500
+     _name: "light rain"
+     _var: 10d
+    precipitation: 
+     _unit: 3h
+     _value: "0.87"
+     _type: rain
+    windDirection: 
+     _deg: "28.0002"
+     _code: NNE
+     _name: "North-northeast"
+    windSpeed: 
+     _mps: "4.31"
+     _name: "Gentle Breeze"
+    temperature: 
+     _unit: celsius
+     _value: "13.81"
+     _min: "13.81"
+     _max: "13.81"
+    pressure: 
+     _unit: hPa
+     _value: "993.36"
+    humidity: 
+     _value: 100
+     _unit: "%"
+    clouds: 
+     _value: "overcast clouds"
+     _all: 92
+     _unit: "%"
+    _from: "2016-05-21T12:00:00"
+    _to: "2016-05-21T15:00:00"
+   - 
+   symbol: 
+     _number: 500
+     _name: "light rain"
+     _var: 10d
+    precipitation: 
+     _unit: 3h
+     _value: "0.66"
+     _type: rain
+    windDirection: 
+     _deg: "23.5033"
+     _code: NNE
+     _name: "North-northeast"
+    windSpeed: 
+     _mps: "5.61"
+     _name: "Moderate breeze"
+    temperature: 
+     _unit: celsius
+     _value: "13.98"
+     _min: "13.98"
+     _max: "13.98"
+    pressure: 
+     _unit: hPa
+     _value: "993.84"
+    humidity: 
+     _value: 100
+     _unit: "%"
+    clouds: 
+     _value: "overcast clouds"
+     _all: 92
+     _unit: "%"
+    _from: "2016-05-21T15:00:00"
+    _to: "2016-05-21T18:00:00"
+   - 
+   symbol: 
+     _number: 500
+     _name: "light rain"
+     _var: 10d
+    precipitation: 
+     _unit: 3h
+     _value: "0.13"
+     _type: rain
+    windDirection: 
+     _deg: "14.5007"
+     _code: NNE
+     _name: "North-northeast"
+    windSpeed: 
+     _mps: "6.15"
+     _name: "Moderate breeze"
+    temperature: 
+     _unit: celsius
+     _value: "14.02"
+     _min: "14.02"
+     _max: "14.02"
+    pressure: 
+     _unit: hPa
+     _value: "994.23"
+    humidity: 
+     _value: 99
+     _unit: "%"
+    clouds: 
+     _value: "broken clouds"
+     _all: 80
+     _unit: "%"
+    _from: "2016-05-21T18:00:00"
+    _to: "2016-05-21T21:00:00"
+   - 
+   symbol: 
+     _number: 500
+     _name: "light rain"
+     _var: 10n
+    precipitation: 
+     _unit: 3h
+     _value: "0.02"
+     _type: rain
+    windDirection: 
+     _deg: "5.50201"
+     _code: N
+     _name: North
+    windSpeed: 
+     _mps: "6.22"
+     _name: "Moderate breeze"
+    temperature: 
+     _unit: celsius
+     _value: "12.93"
+     _min: "12.93"
+     _max: "12.93"
+    pressure: 
+     _unit: hPa
+     _value: "994.73"
+    humidity: 
+     _value: 95
+     _unit: "%"
+    clouds: 
+     _value: "broken clouds"
+     _all: 80
+     _unit: "%"
+    _from: "2016-05-21T21:00:00"
+    _to: "2016-05-22T00:00:00"
+   - 
+   symbol: 
+     _number: 500
+     _name: "light rain"
+     _var: 10n
+    precipitation: 
+     _unit: 3h
+     _value: "0.15"
+     _type: rain
+    windDirection: 
+     _deg: "5.00058"
+     _code: N
+     _name: North
+    windSpeed: 
+     _mps: "5.92"
+     _name: "Moderate breeze"
+    temperature: 
+     _unit: celsius
+     _value: "11.56"
+     _min: "11.56"
+     _max: "11.56"
+    pressure: 
+     _unit: hPa
+     _value: "995.68"
+    humidity: 
+     _value: 96
+     _unit: "%"
+    clouds: 
+     _value: "broken clouds"
+     _all: 68
+     _unit: "%"
+    _from: "2016-05-22T00:00:00"
+    _to: "2016-05-22T03:00:00"
+   - 
+   symbol: 
+     _number: 801
+     _name: "few clouds"
+     _var: 02n
+    precipitation: ""
+    windDirection: 
+     _deg: "5.00143"
+     _code: N
+     _name: North
+    windSpeed: 
+     _mps: "5.11"
+     _name: "Gentle Breeze"
+    temperature: 
+     _unit: celsius
+     _value: "10.1"
+     _min: "10.1"
+     _max: "10.1"
+    pressure: 
+     _unit: hPa
+     _value: "995.78"
+    humidity: 
+     _value: 97
+     _unit: "%"
+    clouds: 
+     _value: "few clouds"
+     _all: 12
+     _unit: "%"
+    _from: "2016-05-22T03:00:00"
+    _to: "2016-05-22T06:00:00"
+   - 
+   symbol: 
+     _number: 801
+     _name: "few clouds"
+     _var: 02n
+    precipitation: ""
+    windDirection: 
+     _deg: "2.00305"
+     _code: N
+     _name: North
+    windSpeed: 
+     _mps: "4.01"
+     _name: "Gentle Breeze"
+    temperature: 
+     _unit: celsius
+     _value: "8.66"
+     _min: "8.66"
+     _max: "8.66"
+    pressure: 
+     _unit: hPa
+     _value: "995.82"
+    humidity: 
+     _value: 96
+     _unit: "%"
+    clouds: 
+     _value: "few clouds"
+     _all: 20
+     _unit: "%"
+    _from: "2016-05-22T06:00:00"
+    _to: "2016-05-22T09:00:00"
+   - 
+   symbol: 
+     _number: 800
+     _name: "clear sky"
+     _var: 01d
+    precipitation: ""
+    windDirection: 
+     _deg: "345.002"
+     _code: NNW
+     _name: "North-northwest"
+    windSpeed: 
+     _mps: "3.52"
+     _name: "Gentle Breeze"
+    temperature: 
+     _unit: celsius
+     _value: "10.03"
+     _min: "10.03"
+     _max: "10.03"
+    pressure: 
+     _unit: hPa
+     _value: "997.07"
+    humidity: 
+     _value: 95
+     _unit: "%"
+    clouds: 
+     _value: "clear sky"
+     _all: 0
+     _unit: "%"
+    _from: "2016-05-22T09:00:00"
+    _to: "2016-05-22T12:00:00"
+   - 
+   symbol: 
+     _number: 800
+     _name: "clear sky"
+     _var: 01d
+    precipitation: ""
+    windDirection: 
+     _deg: "335.502"
+     _code: NNW
+     _name: "North-northwest"
+    windSpeed: 
+     _mps: "3.84"
+     _name: "Gentle Breeze"
+    temperature: 
+     _unit: celsius
+     _value: "16.16"
+     _min: "16.16"
+     _max: "16.16"
+    pressure: 
+     _unit: hPa
+     _value: "997.56"
+    humidity: 
+     _value: 100
+     _unit: "%"
+    clouds: 
+     _value: "clear sky"
+     _all: 0
+     _unit: "%"
+    _from: "2016-05-22T12:00:00"
+    _to: "2016-05-22T15:00:00"
+   - 
+   symbol: 
+     _number: 800
+     _name: "clear sky"
+     _var: 01d
+    precipitation: ""
+    windDirection: 
+     _deg: "348.502"
+     _code: NNW
+     _name: "North-northwest"
+    windSpeed: 
+     _mps: "4.63"
+     _name: "Gentle Breeze"
+    temperature: 
+     _unit: celsius
+     _value: "19.48"
+     _min: "19.48"
+     _max: "19.48"
+    pressure: 
+     _unit: hPa
+     _value: "996.6"
+    humidity: 
+     _value: 95
+     _unit: "%"
+    clouds: 
+     _value: "clear sky"
+     _all: 0
+     _unit: "%"
+    _from: "2016-05-22T15:00:00"
+    _to: "2016-05-22T18:00:00"
+   - 
+   symbol: 
+     _number: 801
+     _name: "few clouds"
+     _var: 02d
+    precipitation: ""
+    windDirection: 
+     _deg: "348.501"
+     _code: NNW
+     _name: "North-northwest"
+    windSpeed: 
+     _mps: "5.31"
+     _name: "Gentle Breeze"
+    temperature: 
+     _unit: celsius
+     _value: "21.36"
+     _min: "21.36"
+     _max: "21.36"
+    pressure: 
+     _unit: hPa
+     _value: "995.18"
+    humidity: 
+     _value: 68
+     _unit: "%"
+    clouds: 
+     _value: "few clouds"
+     _all: 20
+     _unit: "%"
+    _from: "2016-05-22T18:00:00"
+    _to: "2016-05-22T21:00:00"
+   - 
+   symbol: 
+     _number: 500
+     _name: "light rain"
+     _var: 10n
+    precipitation: 
+     _unit: 3h
+     _value: "0.05"
+     _type: rain
+    windDirection: 
+     _deg: "353.007"
+     _code: ""
+     _name: ""
+    windSpeed: 
+     _mps: "4.21"
+     _name: "Gentle Breeze"
+    temperature: 
+     _unit: celsius
+     _value: "18.93"
+     _min: "18.93"
+     _max: "18.93"
+    pressure: 
+     _unit: hPa
+     _value: "995.28"
+    humidity: 
+     _value: 65
+     _unit: "%"
+    clouds: 
+     _value: "clear sky"
+     _all: 8
+     _unit: "%"
+    _from: "2016-05-22T21:00:00"
+    _to: "2016-05-23T00:00:00"
+   - 
+   symbol: 
+     _number: 800
+     _name: "clear sky"
+     _var: 01n
+    precipitation: ""
+    windDirection: 
+     _deg: "16.501"
+     _code: NNE
+     _name: "North-northeast"
+    windSpeed: 
+     _mps: "2.91"
+     _name: "Light breeze"
+    temperature: 
+     _unit: celsius
+     _value: "13.84"
+     _min: "13.84"
+     _max: "13.84"
+    pressure: 
+     _unit: hPa
+     _value: "996.03"
+    humidity: 
+     _value: 67
+     _unit: "%"
+    clouds: 
+     _value: "clear sky"
+     _all: 0
+     _unit: "%"
+    _from: "2016-05-23T00:00:00"
+    _to: "2016-05-23T03:00:00"
+   - 
+   symbol: 
+     _number: 800
+     _name: "clear sky"
+     _var: 01n
+    precipitation: ""
+    windDirection: 
+     _deg: "7.50262"
+     _code: N
+     _name: North
+    windSpeed: 
+     _mps: "1.37"
+     _name: Calm
+    temperature: 
+     _unit: celsius
+     _value: "10.38"
+     _min: "10.38"
+     _max: "10.38"
+    pressure: 
+     _unit: hPa
+     _value: "996.25"
+    humidity: 
+     _value: 79
+     _unit: "%"
+    clouds: 
+     _value: "clear sky"
+     _all: 0
+     _unit: "%"
+    _from: "2016-05-23T03:00:00"
+    _to: "2016-05-23T06:00:00"
+   - 
+   symbol: 
+     _number: 800
+     _name: "clear sky"
+     _var: 01n
+    precipitation: ""
+    windDirection: 
+     _deg: "319.003"
+     _code: NW
+     _name: Northwest
+    windSpeed: 
+     _mps: "1.31"
+     _name: Calm
+    temperature: 
+     _unit: celsius
+     _value: "8.46"
+     _min: "8.46"
+     _max: "8.46"
+    pressure: 
+     _unit: hPa
+     _value: "996.64"
+    humidity: 
+     _value: 82
+     _unit: "%"
+    clouds: 
+     _value: "clear sky"
+     _all: 0
+     _unit: "%"
+    _from: "2016-05-23T06:00:00"
+    _to: "2016-05-23T09:00:00"
+   - 
+   symbol: 
+     _number: 800
+     _name: "clear sky"
+     _var: 01d
+    precipitation: ""
+    windDirection: 
+     _deg: "328.005"
+     _code: NNW
+     _name: "North-northwest"
+    windSpeed: 
+     _mps: "1.4"
+     _name: Calm
+    temperature: 
+     _unit: celsius
+     _value: "11.92"
+     _min: "11.92"
+     _max: "11.92"
+    pressure: 
+     _unit: hPa
+     _value: "997.3"
+    humidity: 
+     _value: 75
+     _unit: "%"
+    clouds: 
+     _value: "clear sky"
+     _all: 0
+     _unit: "%"
+    _from: "2016-05-23T09:00:00"
+    _to: "2016-05-23T12:00:00"
+   - 
+   symbol: 
+     _number: 800
+     _name: "clear sky"
+     _var: 01d
+    precipitation: ""
+    windDirection: 
+     _deg: "2.00385"
+     _code: N
+     _name: North
+    windSpeed: 
+     _mps: "2.07"
+     _name: "Light breeze"
+    temperature: 
+     _unit: celsius
+     _value: "19.37"
+     _min: "19.37"
+     _max: "19.37"
+    pressure: 
+     _unit: hPa
+     _value: 998
+    humidity: 
+     _value: 89
+     _unit: "%"
+    clouds: 
+     _value: "clear sky"
+     _all: 0
+     _unit: "%"
+    _from: "2016-05-23T12:00:00"
+    _to: "2016-05-23T15:00:00"
+   - 
+   symbol: 
+     _number: 800
+     _name: "clear sky"
+     _var: 01d
+    precipitation: ""
+    windDirection: 
+     _deg: "345.5"
+     _code: NNW
+     _name: "North-northwest"
+    windSpeed: 
+     _mps: "2.3"
+     _name: "Light breeze"
+    temperature: 
+     _unit: celsius
+     _value: "22.1"
+     _min: "22.1"
+     _max: "22.1"
+    pressure: 
+     _unit: hPa
+     _value: "997.29"
+    humidity: 
+     _value: 84
+     _unit: "%"
+    clouds: 
+     _value: "clear sky"
+     _all: 0
+     _unit: "%"
+    _from: "2016-05-23T15:00:00"
+    _to: "2016-05-23T18:00:00"
