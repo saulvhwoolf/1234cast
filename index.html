@@ -3,19 +3,14 @@ layout: default
 ---
 
 
-<h1> Weather </h1>
 
-<p>Hello</p>
+
 
 <!DOCTYPE html>
 <html>
 <head>
 <style>
-h1 {
-    border-bottom: 3px solid #cc9900;
-    color: #996600;
-    font-size: 30px;
-}
+
 table, th , td  {
     border: 1px solid grey;
     border-collapse: collapse;
@@ -27,15 +22,63 @@ table tr:nth-child(odd) {
 table tr:nth-child(even) {
     background-color: #ffffff;
 }
+#header {
+    background-color:black;
+    color:white;
+    text-align:center;
+    padding:5px;
+}
+#nav {
+    line-height:30px;
+    background-color:#eeeeee;
+    height:350px;
+    width:100px;
+    float:left;
+    padding:5px; 
+}
+#section {
+    width:350px;
+    float:left;
+    padding:10px; 
+}
+#footer {
+    background-color:black;
+    color:white;
+    clear:both;
+    text-align:center;
+    padding:5px; 
+    height:40px;
+
+}
 </style>
 </head>
 
-<body>
 
-<h1>DATA FROM JSON:</h1>
+<body>
+<div id="header">
+<h1>Whats the weather right now?</h1>
+</div>
+
+<div id="nav">
+nav<br>
+</div>
+
+<div id="section">
+</div>
+
+<div id="footer">
+</div>
+<!-- <a href="http://imgur.com/NmqpsTm"><img src="http://i.imgur.com/NmqpsTm.png" title="source: imgur.com" /></a> -->
+
+
 <div id="id01"></div>
 
+
 <script>
+
+
+
+
 var xmlhttp = new XMLHttpRequest();
 var url = "http://api.openweathermap.org/data/2.5/forecast?q=Boston,us&mode=json&units=imperial&appid=874870f00e684038fc8ad82917ef3cfc";
 
@@ -48,14 +91,18 @@ xmlhttp.open("GET", url, true);
 xmlhttp.send();
 //
 function myFunction(response) {
+  
   var i = -1;
-  var out = "<table>";
+
+  var weatherPoints = new Array(39);
+  var out = "";//<div>Weather</div>";
   var phase = "START";
   var newPhase = "START";
   var stack = [];
   var weatherStack = []
+  out += "<table>";
   JSON.parse(response, function(k, v) {
-    console.log(phase);
+    // console.log(phase);
     newPhase = phase;
     stack.push(k);   
     stack.push(v);      
@@ -70,7 +117,8 @@ function myFunction(response) {
     {
       if(k == "dt")
       {
-        out+= unstackCity(stack);
+        //out+= 
+        unstackCity(stack);
         newPhase = "NEWWEATHER";
       }
     }
@@ -88,9 +136,10 @@ function myFunction(response) {
     if(newPhase == "NEWWEATHER")
     {
       i = i + 1;
-      if(i>0)
+      if(i>=0)
       {
-        out+= unstackWeather(stack, i);
+        weatherPoints[i] =  unstackWeather(stack, i);
+        out+= "<tr><td>" + weatherPoints[i].toString() + "</tr></td>";
         stack = [];
       }
       //console.log(k+v);
@@ -99,9 +148,28 @@ function myFunction(response) {
     return v;     
   });
   out += "</table>";
-  document.getElementById("id01").innerHTML = out;
+  //document.getElementById("id01").innerHTML = out;
+  
+
+  document.getElementById("nav").innerHTML = weatherPoints[1].toString();
+  
+
+  var elem = document.createElement("img");
+  elem.setAttribute("src", weatherPoints[1].imgURL);
+  elem.setAttribute("alt", weatherPoints[1].mainDescription);
+  elem.setAttribute("height", "350");
+  elem.setAttribute("width", "600");
+  document.getElementById("section").appendChild(elem);
 
 }
+
+
+
+
+
+
+
+
 function unstackCity(stack) {
     var string = "<tr><td>CityInfo</td>";
 
@@ -109,56 +177,84 @@ function unstackCity(stack) {
     var value = stack.shift();
     while(type != undefined)
     {
+      if(type == "name")
+        string+="<p> The Weather in " + value+ "</p>";
       string+="<td>" + type + ", " + value + "</td>";
       type = stack.shift();
       value = stack.shift();
     }
 
-    string+="</tr>";//</table><table>"
+    //string+="</tr>";//</table><table>"
     return string;              // The function returns the product of p1 and p2
 }
 
 function unstackWeather(stack, dayNum) {
+    var event = new WeatherEvent();
     var string = "<tr>";
     var thing;
     //string += "<td>Weather Event " + dayNum + "</td>";                    
-    var type = stack.shift();
-    var value = stack.shift();
+    var value = stack.pop();
+    var type = stack.pop();
+
 
     var data = ["dt", "", "dt_txt", "sys", "pod", "rain", "3h", "wind", "deg", "speed", "clouds", "all", "weather", ]
     var dateTime = "", weatherMain = "";
     var i = 0, temp = 0, minTemp = 0, maxTemp = 0, pressure = 0, seasLevel = 0;
-    for(thing = 0; thing < stack.length; thing++)// while(type != undefined)
+    while(type != undefined)
     {
-      string+="<td>" + type + ", " + value + "</td>";
-      if(type == "dt_txt")
-        dateTime = value;
-      else if(type == "temp")
-        temp = value;
-      else if(type == "temp_min")
-        minTemp = value;
-      else if(type == "temp_max")
-        maxTemp = value;
-      else if(type == "pressure")
-        pressure = value;
-      else if(type == "sea_level")
-        seaLevel = value;
-      else if(type == "main")
-        seaLevel = value;
-      type = stack.shift();
-      value = stack.shift();
+      //string+="<td>" + type + ", " + value + "</td>";
+      event.addData(type, value);
+      value = stack.pop();
+      type = stack.pop();
       i++;
     }
-    // string+="<td>" + dateTime + "</td>";
-    // string+="<td>Temperature: " + temp + "</td>";
-    // string+="<td>Pressure: " + pressure + "</td>";
+    event.finish();
 
+
+
+    string+="</tr><tr><td>" + event.dateTime + ", " + event.description + ", " + event.temp + ", " + event.mainDescription +  "</td>";
     string+="</tr>"
-    return string;              // The function returns the product of p1 and p2
+    return event;              // The function returns the product of p1 and p2
 }
-
+function WeatherEvent() {
+  this.dateTime = 0, this.temp = 0, this.mainDescription = "", this.description = "", this.icon = "", this.imgURL = "";
+  this.addData = function (name, value) {
+      if(name == "dt_txt")
+        this.dateTime = value;
+      else if(name == "main" && value != "[object Object]")
+      {
+        //console.log(name+ ", "+ value);
+        this.mainDescription = value;
+      }
+      else if(name == "description")
+        this.description = value;
+      else if(name == "temp")
+        this.temp = value;
+  };
+  this.toString = function(){
+    return "Currently Displaying Weather for: " + this.dateTime + "<BR><BR>It is currently " + this.temp + " degrees outside and is " + this.description;
+  }
+  this.drawSquare = function(){
+    return 0;
+  }
+  this.finish = function(){
+    if(this.mainDescription == "Clouds")
+      this.imgURL = "http://i.imgur.com/sV0HXi4.png";
+    else if(this.mainDescription == "Clear")
+      this.imgURL = "http://i.imgur.com/KnQQIzV.png";
+    else if(this.mainDescription == "Rain")
+      this.imgURL = "http://i.imgur.com/zczKvID.png";
+  }
+  //WINDY     http://i.imgur.com/NmqpsTm.png 
+  //SUNNY     http://i.imgur.com/KnQQIzV.png
+  //STORMY    http://i.imgur.com/Qfho6sq.png
+  //SNOWY     http://i.imgur.com/OuroXOo.png
+  //.5CLOUD   http://i.imgur.com/sV0HXi4.png
+  //RAIN      http://i.imgur.com/zczKvID.png
+  //NIGHT     http://i.imgur.com/IH74qFJ.png
+  //HOT       http://i.imgur.com/o9qvoax.png
+  //CLOUDY    http://i.imgur.com/FoQ8kkE.png
+}
 </script>
-<h1>END OF DATA FROM JSON:</h1>
-
 </body>
 </html>
