@@ -49,7 +49,7 @@ function updateScreen(center) {
   }
 
   
-  if(center< 9)
+  if(center< 2)
   {
     document.getElementById("boxContainer3").innerHTML = weatherData.getDay(center+1).getDate()+ 
     "<div class = 'box' id = 'box3'> </div>" ;
@@ -67,5 +67,7 @@ function updateScreen(center) {
   document.getElementById("displayText").innerHTML = "<br><br>"+weatherData.getDay(center).toString(time);
   document.getElementById("displayImage").innerHTML = weatherData.getDay(center).miniString();
   addClickables(center);
-  displayBar(center);
+  d3.select(".sliderDisplay").html(sliderData(sliderTime, center ));
+  d3.select(".sliderDisplayTime").html(getSliderTime(sliderTime));
+  // displayBar(center);
 }

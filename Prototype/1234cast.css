@@ -1,24 +1,44 @@
 
 
 body {
-    background-color:#B2E6FE;
+/*    background: url("Images/background.png") no-repeat;
+*/
+    /*background-size: 100%;*/
+
 }
 #header {
-    background-image: url("https://garyallenonbusiness.files.wordpress.com/2015/01/blue-sky.jpg");
-    background-size: 160px 120px;
-    color:black;
-    display: flex;
-   /* justify-content: flex-start;
-    align-items: flex-start;*/
-    padding:5px;
-    margin:5px;
+    background: url("Images/header.png") no-repeat;
+    background-size: 100% 100%;
     border:1px solid black;
-    border-bottom:thick solid orange;
-    height:70px;
+    height:75px;
 
 }
 
+#logoHolder {
+    margin-left:165px;
+    float:left;
+}
+#logoHolder > p{
+    font-size:250%;
+    /*text-shadow: -.01px 0 black, 0 .01px black, .01px 0 black, 0 -.01px black;*/
+    font-weight: bold;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+
+.rainbow {
+  background-image: -webkit-gradient( linear, left top, right top, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #2f2),color-stop(0.75, #2f2), color-stop(0.9, #ff2), color-stop(1, #f22) );
+  background-image: gradient( linear, left top, right top, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #2f2),color-stop(0.75, #2f2), color-stop(0.9, #ff2), color-stop(1, #f22) );
+  color:transparent;
+  -webkit-background-clip: text;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+  background-clip: text;
+}
+
+
+
 ul {
+    float:right;
     position:absolute;
     list-style-type: none;
     padding: 0;
@@ -48,65 +68,15 @@ li a:hover {
     background-color: rgb(255, 255, 255, .1);
 }
 
-#header > h1{
-    font-weight: bold;
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
-}
-.rainbow {
-  background-image: -webkit-gradient( linear, left top, right top, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #2f2),color-stop(0.75, #2f2), color-stop(0.9, #ff2), color-stop(1, #f22) );
-  background-image: gradient( linear, left top, right top, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #2f2),color-stop(0.75, #2f2), color-stop(0.9, #ff2), color-stop(1, #f22) );
-  color:transparent;
-  -webkit-background-clip: text;
-  background-clip: text;
-}
-/*#chart {
-    border:thin solid black;
-    margin: 5px;
-}*/
-#sliderDisplay {
-    position: relative;
-    border-radius: 10px;
-    background-color:#ffffcc;/*:#2AC3F2;*/    
-    border:1px solid black;
-    font-weight: bold;
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
-    border:thin solid black;
-    margin:5px;
-                /*0 auto;*/
-    width: 120px;
-    text-align: center;
-    height:100px;
-    left:45%;
-    
-    /*width: 100%;*/
-    /*margin: 5px;*/
-    /*font-size:50%;*/
-}
-#vizWeather {
-    /*border:thin solid black;*/
-    width: 100%;
-    /*margin: 5px;*/
-    /*display: inline-block;*/
-    /*vertical-align: middle;*/
-    /*line-height: normal;*/
-    font-size:50%;
-}
-#row {
-    border:thin solid black;
-    margin: 5px;
-}
-.sliderContainer {
-    /*width:80%;*/
-    /*border:thin solid red;*/
-    /*margin: 5px;*/
-    /*height:200px;*/
-}
+
+
 
 #section {
     height:80%;
+    width: 80%;
     padding:15px; 
-    margin:5px;
-    /*border:thin solid black;//////////////////////////*/
+    margin:0 auto;
+    /*border:thin solid black;*/
 }
 .boxContainer{
     font-weight: bold;
@@ -124,12 +94,14 @@ li a:hover {
     float:left;
 }
 #boxContainer2{
+    
     position:relative;
     margin: 0 auto;
     width:400px;
     height:300px;
 }
 #boxContainer3 {
+
     float:right;
 }
 #displayImage{
@@ -166,6 +138,14 @@ li a:hover {
     float:left;
 }
 .box{
+    /*background-color:#fc3cf4;/*:#2AC3F2;*/   
+
+    margin-right:5%;
+    float:right;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
     font-size:90%;
     text-align: center;
     border-radius: 10px;
@@ -174,25 +154,40 @@ li a:hover {
     height:90%;
     width: 100%;
 }
+#box1{
+    background: url("Images/pane1.jpg") no-repeat;
+    background-size: 100% 100%;
+}
+#box3{
+    background: url("Images/pane3.jpg") no-repeat;
+    background-size: 100% 100%;
+}
+#mainBox{
+    background: url("Images/pane2.jpg") no-repeat;
+    background-size: 100% 100%;
+}
+.timeBox {
+    /*border:1px solid black;*/
+    width: 50px;
+    height:50px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    background-size: 100%;
 
-/*    border-radius: 10px;
-    background-color:#2AC3F2;
-    border:3px solid black;
-    margin:0;
-    margin-left:25px;
-    margin-right:25px;
+}
+#morningBox {
+    float:left;
+    background-image: url("Images/bedIcon_day.png");
+}
+#nightBox {
+    float:right;
+    background-image: url("Images/bedIcon_night.png");
 
-    
-    color:black;
-    text-align:center;
-    padding:5px; 
-    width:100px;
-    height:100px;
-    top:70px;
-    /*bottom:0;
-    position:relative;*/
+}
 
-/*#mainBox {
-    
-}*/
+
+
+
 

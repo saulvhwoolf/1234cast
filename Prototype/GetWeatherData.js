@@ -1,7 +1,7 @@
 var weatherData;
 
 var sliders = []
-
+var sliderTime = 0;
 var currentRow = 0;
 var yesterdayReceived =0, historyReceived = 0, futureReceived = 0;
 
@@ -47,7 +47,19 @@ function getData() {
 				        	finishData(weatherData);
 					       	updateScreen(1);
 							addClickables(1);
-							displayBar(1);
+
+
+							var todayDate = new Date();
+						    var h = todayDate.getHours(); //January is 0
+						    var m = todayDate.getMinutes(); //January is 0
+						    // h = 11;
+						    // console.log(m/60);
+						    // console.log(h-6);
+						    sliderTime = (m/60 + h);
+
+							d3.select(".sliderDisplay").html(sliderData(sliderTime));
+							d3.select(".sliderDisplayTime").html(getSliderTime(sliderTime));
+							// displayBar(1);
 					    }    	
 					}
 					futurexmlhttp.open("GET", url, true);
@@ -198,6 +210,7 @@ function getCurrentHour(){
 	return mm;
 
 }
+
 function getHourPast(){
 	var date = new Date();
 	console.log("CURRNET TIME"+ date.getHours());
@@ -208,6 +221,40 @@ function formatTime(time)
 {
 	return  inputFormat.parse(time.substring(0, time.indexOf("EDT on")) + time.substring(time.indexOf("EDT on")+ 7));
 }
+
+function sliderData(value, center)
+{
+	if(center == null)
+		center = 1;
+	var hour =  Math.floor(value);
+	// console.log(hour + ":" + minutes)
+	var width = d3.select("#slider").node().getBoundingClientRect().width;
+
+	d3.select(".sliderDisplay").style("left", ((value/15) * width - width/2 + 46)+"px");
+
+	console.log(currentRow+"updating slider info to " + center);
+	return weatherData.getDay(center).getHour(hour-1);
+}
+function getSliderTime(value)
+{
+	var hour =  Math.floor(value);
+	var minutes = Math.floor((value % 1) * 60) ;
+	// console.log(hour + ":" + minutes)
+	var width = d3.select("#slider").node().getBoundingClientRect().width;
+	var pos = document.getElementById('handle-one').getBoundingClientRect().left;
+	// console.log(d3.select(".d3-slider-handle").attr("left"));
+	console.log(document.getElementById('handle-one').getBoundingClientRect().left);
+
+    d3.select(".sliderDisplayTime").style("left", ((value/15) * width - width/2 + 73)+"px");
+
+
+	if(hour > 12)
+		hour -= 12;
+	if(minutes<10)
+		minutes = "0" + minutes;
+	return "<p>" + hour + ":" + minutes + "<p>";
+}
+
 
 function WeatherEvent(date){
 	this.days = new Array(10);
@@ -312,7 +359,7 @@ function WeatherEventHour(num, time, temp, condition) {
 	this.vizString = function(){
 		// return "("+ this.hourNum + ")";
 		// return "(" + this.time + ": " + this.temp + " degrees, "+ this.condition + ")";
-		return this.toString() + "<br><a href='#'><img src=" + this.iconURL + " height='40' width='40' border=10/></a>";
+		return this.toString() + "<a href='#'><img src=" + this.iconURL + " height='40' width='40' border=10/></a>";
 	}
 	this.getTime = function(){
 		return time;
@@ -377,4 +424,9 @@ function WeatherEventHour(num, time, temp, condition) {
 // }
 
 getData();
+
+
+
+
+
 
