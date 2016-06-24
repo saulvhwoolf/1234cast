@@ -72,6 +72,7 @@
     d3.select('#slider').call(
         d3.slider().value(val).on("slide", function(evt, value) 
         {
+            sliderTime = value;
             d3.select('#slidertext').text(value);
             d3.select(".sliderDisplay").html(sliderData(value));
             d3.select(".sliderDisplayTime").html(getSliderTime(value))
