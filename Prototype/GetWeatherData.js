@@ -56,6 +56,7 @@ function getData() {
 						    // console.log(m/60);
 						    // console.log(h-6);
 						    sliderTime = (m/60 + h);
+						    sliderTime = Math.min(Math.max(parseInt(sliderTime), 6), 21);
 
 							d3.select(".sliderDisplay").html(sliderData(sliderTime));
 							d3.select(".sliderDisplayTime").html(getSliderTime(sliderTime));

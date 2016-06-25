@@ -1,14 +1,17 @@
 
 
 body {
-/*    background: url("Images/background.png") no-repeat;
-*/
-    /*background-size: 100%;*/
+    min-width: 900px; /*Says that the every div has at least to be 200px width*/
+
+    background: url("Images/Backgroundv2.png")center no-repeat;
+    background-color: grey;
+    min-width: 900px; /*Says that the every div has at least to be 200px width*/
+    background-size: 100% 185%;
 
 }
 #header {
     background: url("Images/header.png") no-repeat;
-    background-size: 100% 100%;
+    background-size: 100%;
     border:1px solid black;
     height:75px;
 
@@ -74,9 +77,13 @@ li a:hover {
 #section {
     height:80%;
     width: 80%;
+
+    min-width: 900px; /*Says that the every div has at least to be 200px width*/
+    min-height: 200px; /*Says that the every div has at least to be 200px height*/
+
     padding:15px; 
     margin:0 auto;
-    /*border:thin solid black;*/
+    border:thin solid black;
 }
 .boxContainer{
     font-weight: bold;
@@ -97,7 +104,7 @@ li a:hover {
     
     position:relative;
     margin: 0 auto;
-    width:400px;
+    width:350px;
     height:300px;
 }
 #boxContainer3 {
@@ -109,8 +116,8 @@ li a:hover {
     /*background-color:#fc3cf4;/*:#2AC3F2;*/   
     border:1px solid black;
     height:70%;
-    width: 50%;
-    margin-top:10%;
+    width: 60%;
+    /*margin-top:10%;*/
 
     margin-right:5%;
     float:right;
@@ -141,7 +148,7 @@ li a:hover {
     /*background-color:#fc3cf4;/*:#2AC3F2;*/   
 
     margin-right:5%;
-    float:right;
+    /*float:right;*/
     display:flex;
     justify-content:center;
     align-items:center;
@@ -150,7 +157,7 @@ li a:hover {
     text-align: center;
     border-radius: 10px;
     background-color:#ffffcc;/*:#2AC3F2;*/    
-    border:1px solid black;
+    /*border:1px solid black;*/
     height:90%;
     width: 100%;
 }

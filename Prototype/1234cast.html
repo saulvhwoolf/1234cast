@@ -68,6 +68,9 @@
     console.log(m/60);
     console.log(h-6);
     var val = (m/60 + h);
+    val = Math.min(Math.max(parseInt(val), 6), 21);
+
+    
     console.log(val);
     d3.select('#slider').call(
         d3.slider().value(val).on("slide", function(evt, value) 
