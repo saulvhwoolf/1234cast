@@ -1,12 +1,24 @@
 var weatherData;
 
 var sliders = []
-var sliderTime = 0;
-var currentRow = 0;
+
 var yesterdayReceived =0, historyReceived = 0, futureReceived = 0;
 
 var todayValues = new Array(264);
 var numHistoryHours = 0;
+
+var todayNum = new Date().getDay();
+
+var weekday = new Array(7);
+weekday[0]=  "Sunday";
+weekday[1] = "Monday";
+weekday[2] = "Tuesday";
+weekday[3] = "Wednesday";
+weekday[4] = "Thursday";
+weekday[5] = "Friday";
+weekday[6] = "Saturday";
+
+
 
 var inputFormat = d3.time.format("%I:%M %p %B %e, %Y"); //10:00 PM
 var dateFormat = d3.time.format("%B %e, %Y"); //10:00 PM
@@ -19,30 +31,32 @@ var yesterdayxmlhttp = new XMLHttpRequest();
 var historyxmlhttp = new XMLHttpRequest();
 var futurexmlhttp = new XMLHttpRequest();
 
+var place = "NY/New_York"
 
 function getData() {
 	weatherData = new WeatherEvent(date);
 
-	var url = "http://api.wunderground.com/api/4e82459ed4c5500f/yesterday/q/MA/BOSTON.json";
+	var url = "http://api.wunderground.com/api/4e82459ed4c5500f/yesterday/q/"+place+".json";
 	yesterdayxmlhttp.onreadystatechange=function() 
 	{
 		if (yesterdayxmlhttp.readyState == 4 && yesterdayxmlhttp.status == 200) 
 		{
 			console.log("LOADED YESTERDAY");
 	        historyDataYesterday(weatherData, yesterdayxmlhttp.responseText);
-		    url = "http://api.wunderground.com/api/4e82459ed4c5500f/history_" + date + "/q/MA/BOSTON.json";
+		    url = "http://api.wunderground.com/api/4e82459ed4c5500f/history_" + date + "/q/"+place+".json";
 			historyxmlhttp.onreadystatechange=function() 
 			{
 				if (historyxmlhttp.readyState == 4 && historyxmlhttp.status == 200) 
 				{
 					console.log("LOADED TODAY PAST");
 				    historyDataToday(weatherData, historyxmlhttp.responseText);
-					url = "http://api.wunderground.com/api/4e82459ed4c5500f/hourly10day/q/MA/BOSTON.json";
+					url = "http://api.wunderground.com/api/4e82459ed4c5500f/hourly10day/q/"+place+".json";
 					futurexmlhttp.onreadystatechange=function() 
 					{
-						console.log("LOADED FUTURE");
 
 				  		if (futurexmlhttp.readyState == 4 && futurexmlhttp.status == 200) {
+
+				  			console.log("LOADED FUTURE");
 				        	futureData(weatherData, futurexmlhttp.responseText);	
 				        	finishData(weatherData);
 					       	updateScreen(1);
@@ -53,13 +67,10 @@ function getData() {
 						    var h = todayDate.getHours(); //January is 0
 						    var m = todayDate.getMinutes(); //January is 0
 						    // h = 11;
-						    // console.log(m/60);
-						    // console.log(h-6);
-						    sliderTime = (m/60 + h);
-						    sliderTime = Math.min(Math.max(parseInt(sliderTime), 6), 21);
-
-							d3.select(".sliderDisplay").html(sliderData(sliderTime));
-							d3.select(".sliderDisplayTime").html(getSliderTime(sliderTime));
+						    var value = (m/60 + h);
+				
+							d3.select(".sliderDisplay").html(sliderData(value));
+							d3.select(".sliderDisplayTime").html(getSliderTime(value));
 							// displayBar(1);
 					    }    	
 					}
@@ -77,26 +88,21 @@ function getData() {
 	
 }
 function finishData(weatherData){
-	// console.log("h" + historyReceived + ", f" + futureRecieved);
 	if((futureReceived + historyReceived + yesterdayReceived < 3)) {//we want it to match
-		console.log("failed" + "y" + yesterdayReceived + ", h" + historyReceived + ", f" + futureReceived);
         setTimeout(
         	function() {finishData(weatherData);},
    			50)
    		;//wait 50 millisecnds then recheck
         return;
     }
-    console.log("PASSED DATACHECK TEST" + "y" + yesterdayReceived + ", h" + historyReceived + ", f" + futureReceived);
     readyToLoad = 1;
-    var i;
-    var sum = "";
-    var num = 0;
-    for(i = 0; i < 24; i++)
-    {
-    	sum += "" + weatherData.getDay(1).getHour(i);
-    }
-    // console.log("Values:" + sum);
-    // console.log("number:" + num);
+    // var i;
+    // var sum = "";
+    // var num = 0;
+    // for(i = 0; i < 24; i++)
+    // {
+    // 	sum += "" + weatherData.getDay(1).getHour(i);
+    // }
 
 
 }
@@ -106,27 +112,26 @@ function historyDataYesterday(weatherData, response) {
  	var json = JSON.parse(response);
  	var day = json.history.observations;
  	numHistoryHours = day.length;
- 	console.log("NUMHISTORY =" + numHistoryHours);
 
- 	var lookingFor = 0;
 	var i;
- 	for(i = 0; i < numHistoryHours; i++){
+	var currHour = 0, numPoints = 0;
+	var hourData = [];
+ 	for(i = 0; i < day.length; i++){
  		var hour = day[i];
- 		var out = "";
- 		if(lookingFor > 23)
- 		{
- 			i = numHistoryHours;
+ 		if(hour.date.hour == currHour){
+ 			numPoints+=1;
  		}
- 		else if(hour.date.hour == lookingFor)
- 		{
- 			out = "Added";
- 			yesterday.addHour(lookingFor, new WeatherEventHour(i, hour.date.pretty, hour.tempi, hour.conds));
- 			lookingFor++;
+ 		else{
+ 			numPoints = 0;
+ 			yesterday.addHour(currHour, new WeatherEventHour(currHour, hourData));
+ 			currHour = hour.date.hour;
+ 			hourData = [];
  		}
- 		out += hour.date.hour;
- 		// console.log(out);
- 		// todayValues[i] = day[i].tempi + ", " + day[i].conds;
+ 		console.log("Yesterday load " + hour.date.hour);
+ 		hourData[numPoints] = new WeatherEventData(hour.date.pretty, hour.tempi, hour.conds);
  	}
+ 	yesterday.addHour(currHour, new WeatherEventHour(currHour, hourData));
+
  	weatherData.addDay(0, yesterday, "YESTERDAY");
  	yesterdayReceived = 1;
 }
@@ -135,39 +140,42 @@ function historyDataToday(weatherData, response) {
 	today = new WeatherEventDay(1);
  	var json = JSON.parse(response);
  	var day = json.history.observations;
- 	// console.log("TODAYDAY" + day);
  	numHistoryHours = day.length;
- 	var lookingFor = 0;
+
 	var i;
+	var currHour = 0, numPoints = 0;
+	var hourData = [];
  	for(i = 0; i < numHistoryHours; i++){
  		var hour = day[i];
- 		if(lookingFor > hoursPast)
- 		{
- 			i = numHistoryHours;
+ 		if(hour.date.hour == currHour){
+ 			numPoints+=1
  		}
- 		else if(hour.date.hour == lookingFor)
- 		{
- 			today.addHour( i, new WeatherEventHour(i, hour.date.pretty, hour.tempi, hour.conds));
- 			lookingFor++;
+ 		else{
+ 			numPoints=0;
+ 			console.log(hourData);
+ 			today.addHour(currHour, new WeatherEventHour(currHour, hourData));
+ 			currHour = hour.date.hour;
+ 			hourData = [];
  		}
- 		// todayValues[i] = hour.tempi + ", " + hour.conds;
+ 		console.log("Today Load " + hour.date.hour + ", " + hour.conds);
+		hourData[numPoints] = new WeatherEventData(hour.date.pretty, hour.tempi, hour.conds);
  	}
+ 	today.addHour(currHour, new WeatherEventHour(currHour, hourData));
  	weatherData.addDay(1, today, "TODAY");
  	historyReceived = 1;
 }
 function futureData(weatherData, response){
 
-	// var today = weatherData.getDay(1);
-	// console.log(today);
 	var json = JSON.parse(response);
  	var data = json.hourly_forecast;
-	var i = numHistoryHours;
+	var i = data[0].FCTTIME.hour;
+
 	var index = 0;
-	// console.log("HISTORY" + numHistoryHours);
 	for(; i < 24; i++){
-		// console.log("Placing in " +i);
 		var hour = data[index];
-		today.addHour(i, new WeatherEventHour(i, hour.FCTTIME.pretty, hour.temp.english, hour.condition));
+		console.log("Future today " +i  + hour.condition);
+
+		today.addHour(i, new WeatherEventHour(i, [new WeatherEventData(hour.FCTTIME.pretty, hour.temp.english, hour.condition)]));
 		index++;
 	}
 	weatherData.addDay(1, today, "FUTURE");
@@ -177,15 +185,17 @@ function futureData(weatherData, response){
 	for(i = 0;i < 8; i++){
 		day = new WeatherEventDay(i+2);
 		for(j = 0; j < 24; j++){
+			// console.log("Future Load " +j );
+
 			var hour = data[index];
-			day.addHour(j, new WeatherEventHour(j, hour.FCTTIME.pretty, hour.temp.english, hour.condition));
+			// console.log("Future " +j  + hour.condition);
+
+			day.addHour(j , new WeatherEventHour(j, [new WeatherEventData(hour.FCTTIME.pretty, hour.temp.english, hour.condition)]));
 			index++;
 		}
 		weatherData.addDay((i+2), day, "FUTURE");
 	}
 
-	// console.log("future:" + (24 - numHistoryHours));
-	// console.log(data.length);
  	for(; i < data.length; i++){
  		todayValues[i] = "(" + data[i].FCTTIME.hour + ", " + data[i].temp.english + "," + data[i].condition + ")";
  	}
@@ -214,7 +224,6 @@ function getCurrentHour(){
 
 function getHourPast(){
 	var date = new Date();
-	console.log("CURRNET TIME"+ date.getHours());
 	return date.getHours();
 }
 
@@ -222,30 +231,38 @@ function formatTime(time)
 {
 	return  inputFormat.parse(time.substring(0, time.indexOf("EDT on")) + time.substring(time.indexOf("EDT on")+ 7));
 }
-
-function sliderData(value, center)
+function changeLocation(location)
 {
-	if(center == null)
-		center = 1;
+	center = 1;
+	place = location;
+	yesterdayxmlhttp = new XMLHttpRequest();
+	historyxmlhttp = new XMLHttpRequest();
+	futurexmlhttp = new XMLHttpRequest();
+	yesterdayReceived =0, historyReceived = 0, futureReceived = 0;
+	setTimeout(
+        	function() {getData();},
+   			100)
+	
+
+}
+function sliderData(value)
+{
 	var hour =  Math.floor(value);
-	// console.log(hour + ":" + minutes)
+	var minutes = Math.floor((value % 1) * 60) ;
 	var width = d3.select("#slider").node().getBoundingClientRect().width;
 
-	d3.select(".sliderDisplay").style("left", ((value/15) * width - width/2 + 46)+"px");
+	d3.select(".sliderDisplay").style("left", ((value/15) * width - width/2 + 40)+"px");
+    // d3.select(".sliderDisplayTime").style("left", ((value/15) * width - width/2 + 73)+"px");
 
-	console.log(currentRow+"updating slider info to " + center);
-	return weatherData.getDay(center).getHour(hour-1);
+	return weatherData.getDay(center).getHour(hour).getSliderData();
 }
 function getSliderTime(value)
 {
 	var hour =  Math.floor(value);
 	var minutes = Math.floor((value % 1) * 60) ;
-	// console.log(hour + ":" + minutes)
 	var width = d3.select("#slider").node().getBoundingClientRect().width;
-	var pos = document.getElementById('handle-one').getBoundingClientRect().left;
-	// console.log(d3.select(".d3-slider-handle").attr("left"));
-	console.log(document.getElementById('handle-one').getBoundingClientRect().left);
 
+	// d3.select(".sliderDisplay").style("left", ((value/15) * width - width/2 + 40)+"px");
     d3.select(".sliderDisplayTime").style("left", ((value/15) * width - width/2 + 73)+"px");
 
 
@@ -254,6 +271,16 @@ function getSliderTime(value)
 	if(minutes<10)
 		minutes = "0" + minutes;
 	return "<p>" + hour + ":" + minutes + "<p>";
+}
+function adjustIcons(center)
+{
+	var i = 6;
+	for(; i < 21; i++){
+		document.getElementById("s" + i).innerHTML = "";
+		var hour = weatherData.getDay(center).getHour(i);
+		document.getElementById("s" + i).innerHTML = hour.getIcon();
+	}
+	
 }
 
 
@@ -264,13 +291,15 @@ function WeatherEvent(date){
 		return date;
 	}
 	this.addDay = function(num, day, source){
-		// console.log("ADDED DATA FOR DAY " + num+";")
-		// console.log(source);
 		this.days[num] = day;
 	}
 	this.getDay = function(day){
-		return this.days[day];
+		console.log(this.days[day]);
 
+		if(day > -1)
+			return this.days[day];
+		else 
+			return new WeatherEventDay(0);
 	}
 	this.eraseDay = function(day){
 		this.days[day] = null;
@@ -281,29 +310,33 @@ function WeatherEvent(date){
 function WeatherEventDay(num){
 	this.dayNum = num;
 	this.hours = new Array(24);
-	var i;
-	this.imgURL = "http://i.imgur.com/KnQQIzV.png";
-	// for(i = 0; i < 24;i++){
 
+	// var i;
+	// for( i = 0; i < 24; i++)
+	// {
+	// 	this.hours[i] = new WeatherEventHour(i, []);
 	// }
 
+	this.imgURL = "http://i.imgur.com/KnQQIzV.png";
+
+
 	this.getDate = function(){
-		// console.log(num);
 		var hour = getCurrentHour();
-		var time = formatTime(this.hours[12].getTime());
-		// console.log("hour"+ hour);
+		var time = weekday[(todayNum+num-1)%7];
+		// console.log(time.getDay());
+		console.log(time+"time");
 		var date = "";
 	    if(this.dayNum == 0)
-	      date = "Yesterday, " + dateFormat(time);//.substring(15);
+	      date = "Yesterday, " + time;//.substring(15);
 	    else if(this.dayNum  == 1)
 	   	{
-		  var time = formatTime(this.hours[hour].getTime());
-	      date = "Today, " + outputFormat(time);//.substring(15);
+		  // var time = formatTime(this.getHour(hour).getTime());
+	      date = "Today, " + time;//.substring(15);
 	    }
 	    else if(this.dayNum  == 2)
-	      date = "Tomorrow, " + dateFormat(time);//.substring(15);
+	      date = "Tomorrow, " + time;//.substring(15);
 	    else
-	      date = dateFormat(time);
+	      date = time;
 	    return date;
 		// return days[num]
 	}
@@ -314,27 +347,40 @@ function WeatherEventDay(num){
 	//     "<br> With a high of " + this.high + "<br> And a low of " + this.low;
  //  	}
   	this.addHour = function(num, hour){
-  		// console.log("HOUR " + num+";")
-
 		this.hours[num] = hour;
 	}
+
 	this.getHour= function(hour){
-		// console.log(this.hours[hour]);
-		return this.hours[hour];
+		var data = this.hours[hour];
+		if(data == null)
+		{
+			data = this.hours[hour-1];	
+		}
+		if(data == null)
+		{
+			var i =hour;
+			for(;i< 24;i++)
+			{
+				data = this.hours[i];
+				if(data != null)
+					i = 24;
+			}
+		}		
+		console.log(this.hours[hour] + ", " + this.hours[hour-1] +","+ this.hours[hour+1]);
+		return data;
 	}
 	this.getHours= function(){
 		return this.hours;
 	}
 	this.toString = function(){
-		// console.log("toString of day" + this.dayNum)
 		return this.hours[12].toString();// + this.miniString();
 	}
 	this.toString = function(hour){
-		// console.log("toString of day" + this.dayNum)
-		return this.hours[hour].toString();// + this.miniString();
+		return this.getHour(hour).toString();// + this.miniString();
 	}
 	this.miniString = function(){
-    	return "<br><a href='#'><img src=" + this.imgURL + " height='190' width='200' border=10/></a><br>";
+		console.log(hoursPast +","+ this.getHour(hoursPast));
+    	return "<br><a href='#'><img src=" + this.getHour(hoursPast).paneImage() + " height='190' width='200' border=10/></a><br>";
 	}
 	this.getTemps = function(){
 		var temps = new Array(24),
@@ -346,84 +392,153 @@ function WeatherEventDay(num){
 		return temps;
 	}
 }
-function WeatherEventHour(num, time, temp, condition) {
-	this.hourNum = num;
+
+var conds = [];
+function WeatherEventHour(hour, dataPoints) {
+	this.hour = hour;
+	this.dataPoints = dataPoints;
+	console.log(hour + "," + dataPoints);
+	// this.iconURL = "http://icons.wxug.com/i/c/k/clear.gif";
+/*["Mostly Cloudy","Overcast", Light Rain", "Scattered Clouds",
+ "Thunderstorm", "Partly Cloudy", "Clear", "Chance of a Thunderstorm", */
+
+	this.getIcon = function()
+	{
+		if(this.dataPoints.length == 0){
+			return "";
+		}
+		else{
+			return "<a href='#'><img src=" + this.dataPoints[0].iconURL + " height='50px' width='50px' border=10/></a>"
+		}
+	}
+	this.getDisplayIcon = function()
+	{
+		if(this.dataPoints.length == 0){
+			return "";
+		}
+		else{
+			return "<a href='#'><img src=" + this.dataPoints[0].sliderIconURL + " height='75px' width='35px' border=10/></a>"
+		}
+	}
+
+
+	this.toString = function(){
+		// console.log(hour+"data"+dataPoints.length);
+		if(this.dataPoints.length == 0){
+			return "emptyToString";
+		}
+		else{
+			var string = "";
+			if(center == 0)
+				string ="Yesterday, the weather was ";
+			else if(center == 1)
+				string ="Right now, the weather is ";
+			else if(center == 2)
+				string ="Tomorrow, the weat ";
+			return dataPoints[0].temp + String.fromCharCode(176)+ "<br>and<br>" + this.dataPoints[0].condition;
+		}
+		
+	}
+	this.paneImage = function(){
+		// console.log(hour+"data"+dataPoints.length);
+		if(this.dataPoints.length == 0){
+			return "Images/Pane/squares/Meatball.png";
+		}
+		else{
+			return this.dataPoints[0].getImage();
+		}
+		
+	}
+
+	this.getSliderData = function(){
+		return this.getTemp() + String.fromCharCode(176) +"<br>" + this.getDisplayIcon();
+	}
+	// this.getTime = function(){
+	// 	if(dataPoints.length == 0){
+	// 		return null;
+	// 	}
+	// 	else{
+	// 		return dataPoints[0].time;
+	// 	}
+	// }
+	this.getTemp = function(){
+		if(this.dataPoints.length == 0){
+			return -1;
+		}
+		else{
+			return this.dataPoints[0].temp;
+		}
+	}
+	// console.log(this);
+
+}
+
+function WeatherEventData(time, temp, condition) {
 	this.time = time;
 	this.temp = temp;
 	this.condition = condition;
-	this.iconURL = "http://icons.wxug.com/i/c/k/clear.gif"
-	this.toString = function(){
-		// return "("+ this.hourNum + ")";
-		// return "(" + this.time + ": " + this.temp + " degrees, "+ this.condition + ")";
-		return temp + " deg<br>and<br>" + condition;
+	this.iconURL = "http://icons.wxug.com/i/c/k/clear.gif";
+	this.sliderIconURL = "http://icons.wxug.com/i/c/k/clear.gif";
+	this.imgURL = "Images/Pane/squares/Meatball.png";
+
+
+	this.getImage = function(){
+		return this.imgURL;
 	}
-	this.vizString = function(){
-		// return "("+ this.hourNum + ")";
-		// return "(" + this.time + ": " + this.temp + " degrees, "+ this.condition + ")";
-		return this.toString() + "<a href='#'><img src=" + this.iconURL + " height='40' width='40' border=10/></a>";
+
+	if(this.condition  == "Clear"){
+		this.iconURL = "SliderIcons/Sunny.png";
+		this.sliderIconURL = "DisplayIcons/Sunny.png";
+		this.imgURL = "Images/Pane/squares/Clear.png";
 	}
-	this.getTime = function(){
-		return time;
+	else if(this.condition == "Mostly Cloudy"){
+		this.iconURL = "SliderIcons/Cloudy.png";
+		this.sliderIconURL = "DisplayIcons/Cloudy.png";
+		this.imgURL = "Images/Pane/squares/Cloudy.png";
 	}
-	this.getTemp = function(){
-		return temp;
+	else if(this.condition == "Scattered Clouds"){
+		this.iconURL = "SliderIcons/PartlyCloudy.png";
+		this.sliderIconURL = "DisplayIcons/PartlyCloudy.png";
+		this.imgURL = "Images/Pane/squares/PartlyCloudy.png";
+
 	}
+	else if(this.condition == "Partly Cloudy"){
+		this.iconURL = "SliderIcons/PartlyCloudy.png";
+		this.sliderIconURL = "DisplayIcons/PartlyCloudy.png";
+		this.imgURL = "Images/Pane/squares/PartlyCloudy.png";
+	}
+	else if(this.condition == "Overcast"){
+		this.iconURL = "SliderIcons/Cloudy.png";
+		this.sliderIconURL = "DisplayIcons/Cloudy.png";
+		this.imgURL = "Images/Pane/squares/Cloudy.png";
+	}
+	else if(this.condition == "Light Rain"){
+		this.iconURL = "SliderIcons/Rainy.png";
+		this.sliderIconURL = "DisplayIcons/Rainy.png";
+		this.imgURL = "Images/Pane/squares/Rain.png";
+	}
+	else if(this.condition == "Chance of Rain"){
+		this.iconURL = "SliderIcons/Rainy.png";
+		this.sliderIconURL = "DisplayIcons/Rainy.png";
+		this.imgURL = "Images/Pane/squares/Rain.png";
+	}
+	else if(this.condition == "Thunderstorm"){
+		this.iconURL = "SliderIcons/ThunderStorm.png";
+		this.sliderIconURL = "DisplayIcons/ThunderStorm.png";
+		this.imgURL = "Images/Pane/squares/Thunderstorm.png";
+	}
+	else if(this.condition == "Chance of a Thunderstorm"){
+		this.iconURL = "SliderIcons/ThunderStorm.png";
+		this.sliderIconURL = "DisplayIcons/ThunderStorm.png";
+		this.imgURL = "Images/Pane/squares/Thunderstorm.png";
+	}
+
+
+
+
+	
+
 }
-
-// function WeatherEvent() {
-//   this.date = "";
-//   this.high = 0, this.low = 0;
-//   this.conditions = "";
-//   this.imgURL = "http://i.imgur.com/KnQQIzV.png";
-
-//   
-//   this.getDate = function(current){
-//     var date = "";
-//     if(current == -1)
-//       date = "Yesterday, " + this.date.substring(15);
-//     else if(current == 0)
-//       date = "Today, " + this.date.substring(15);
-//     else if(current == 1)
-//       date = "Tomorrow, " + this.date.substring(15);
-//     else
-//       date = this.date.substring(15);
-//     return date;
-//   }
-//   this.toString = function(center){
-//     return "Right Now, The weather outside it:" + "<br><a href='#'><img src=" + this.imgURL + 
-//      " height='200' width='250' border=5/></a><br>" + this.conditions + " with a high of " + 
-//      this.high + "˚ and a low of " + this.low + "˚";
-//     // return "Showing weather for:<BR>" + date + "<br><a href='#'><img src=" + this.imgURL + 
-//     // " height='100' width='100' border=0/></a><br>  <br>It is " + this.conditions + 
-//     // "<br> With a high of " + this.high + "<br> And a low of " + this.low;
-//   }
-//   this.miniString = function(){
-//     return "<br><a href='#'><img src=" + this.imgURL + " height='190' width='200' border=10/></a><br>";
-//   }
-//   this.finish = function(){
-//     if(this.conditions == "Partly Cloudy")
-//       this.imgURL = "http://i.imgur.com/sV0HXi4.png";
-//     else if(this.conditions == "Clear")
-//       this.imgURL = "http://i.imgur.com/KnQQIzV.png";
-//     else if(this.conditions == "Chance of Rain")
-//       this.imgURL = "http://i.imgur.com/zczKvID.png";
-//     else if(this.conditions == "Chance of a Thunderstorm")
-//       this.imgURL = "http://i.imgur.com/Qfho6sq.png";
-//     else
-//       this.imgURL = "http://cdn1-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-2.jpg"
-//   }
-//   //WINDY     http://i.imgur.com/NmqpsTm.png 
-//   //SUNNY     http://i.imgur.com/KnQQIzV.png
-//   //STORMY    http://i.imgur.com/Qfho6sq.png
-//   //SNOWY     http://i.imgur.com/OuroXOo.png
-//   //.5CLOUD   http://i.imgur.com/sV0HXi4.png
-//   //RAIN      http://i.imgur.com/zczKvID.png
-//   //NIGHT     http://i.imgur.com/IH74qFJ.png
-//   //HOT       http://i.imgur.com/o9qvoax.png
-//   //CLOUDY    http://i.imgur.com/FoQ8kkE.png
-
-// }
-
 getData();
 
 

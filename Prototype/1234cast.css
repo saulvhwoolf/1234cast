@@ -83,7 +83,21 @@ li a:hover {
 
     padding:15px; 
     margin:0 auto;
-    border:thin solid black;
+    /*border:thin solid black;*/
+}
+#locationSelectorContainer {
+    height:20px;
+    width: 80%;
+
+    min-width: 900px; /*Says that the every div has at least to be 200px width*/
+
+    margin:0 auto;
+    /*border:thin solid black;*/
+}
+#locationSelector{
+    height:100%;
+    /*width: 300px;*/
+    /*border:thin solid black;*/
 }
 .boxContainer{
     font-weight: bold;
@@ -111,20 +125,24 @@ li a:hover {
 
     float:right;
 }
-#displayImage{
+.displayImage{
     border-radius: 10px;
     /*background-color:#fc3cf4;/*:#2AC3F2;*/   
     border:1px solid black;
-    height:70%;
-    width: 60%;
-    /*margin-top:10%;*/
-
-    margin-right:5%;
-    float:right;
+    height:180px;
+    width: 180px;
+    margin:0 auto;
     display:flex;
     justify-content:center;
     align-items:center;
     overflow:hidden;
+}
+
+#displayImage{
+    float:right;
+
+    margin-right:5%;
+
 }
 #displayImage img {
     flex-shrink:0;
@@ -193,8 +211,35 @@ li a:hover {
     background-image: url("Images/bedIcon_night.png");
 
 }
+.tempBox{
+    position: relative;
+    width: 60px;
+    height:40px;
+    border:1px solid black;
+    /*overflow: visible;*/
+    /*top:100px;*/
+    /*left: 200px;*/
+    z-index: 100;
+    /*-webkit-transform-origin: 20% 40%;*/
+}
 
+.sliderDisplay .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+ 
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+}
 
+.sliderDisplay:hover .tooltiptext {
+    visibility: visible;
+}
 
 
 

@@ -28,50 +28,88 @@
     <br>
 </div>
 
-
+<div id = "locationSelectorContainer">
+    <div id = "locationSelector">
+    <h3>Select a Location
+        <select id  = "select" onchange=
+        "changeLocation(this.options[this.selectedIndex].value);console.log(this.options[this.selectedIndex].value);">
+            <option value="WA/Seattle">Seattle</option>
+            <option value="MA/Boston">Boston</option>
+            <option value="CA/San_Francisco">San Francisco</option>
+            <option value="NY/New_York">New York</option>
+        </select>
+    </h3>
+    </div>
+</div>
 <div id="section">
+
     <div class = "boxContainer" id = "boxContainer1">
-        <div class = "box" id = "box1"> </div> 
+        <div class = "box" id = "box1"> 
+            <div class = "displayImage"></div>
+        </div> 
     </div>
     <div class = "boxContainer" id = "boxContainer3">   
-        <div class = "box" id = "box3"> </div>
+        <div class = "box" id = "box3"> 
+            <div class = "displayImage"></div>
+        </div>
     </div>
     <div class = "boxContainer" id = "boxContainer2">   
         <div class = "box" id = "mainBox">
             <div id = "displayText"></div> 
-            <div id = "displayImage"></div>
+            <div class = "displayImage"></div>
         </div> 
     </div>
 </div>    
 <div class = "sliderContainerContainer">
     <!-- <div class = "triangleImage"></div> -->
     <div class = "sliderDisplayContainer">
-        <div class = "sliderDisplay"></div>
+        <div class = "sliderDisplay">
+            <span class="tooltiptext">Tooltip text</span>
+        </div>
     </div>
     <!-- <a href='#'><img src=" + this.iconURL + " height='40' width='40' border=10/></a> -->
     <div class="sliderContainer">
         <div class= "timeBox" id="morningBox"></div>
         <div class= "timeBox" id="nightBox"></div>
+        <div class = "sliderIcons">
+            <div class = "sliderIcon" id="s6"></div>
+            <div class = "sliderIcon" id="s7"></div>
+            <div class = "sliderIcon" id="s8"></div>
+            <div class = "sliderIcon" id="s9"></div>
+            <div class = "sliderIcon" id="s10"></div>
+            <div class = "sliderIcon" id="s11"></div>
+            <div class = "sliderIcon" id="s12"></div>
+            <div class = "sliderIcon" id="s13"></div>
+            <div class = "sliderIcon" id="s14"></div>
+            <div class = "sliderIcon" id="s15"></div>
+            <div class = "sliderIcon" id="s16"></div>
+            <div class = "sliderIcon" id="s17"></div>
+            <div class = "sliderIcon" id="s18"></div>
+            <div class = "sliderIcon" id="s19"></div>
+            <div class = "sliderIcon" id="s20"></div>
+        </div>
         <div id="slider"></div>
+
     </div>
     <div class = "sliderDisplayContainer" id = "timeContainer">
         <div class = "sliderDisplayTime"></div>
     </div>
+
 </div>
-<div id="slidertext"></div>
+<!-- <div id="slidertext"></div> -->
 
 <script type="text/javascript">
     var todayDate = new Date();
     var h = todayDate.getHours(); //January is 0
     var m = todayDate.getMinutes(); //January is 0
     // h = 11;
-    console.log(m/60);
-    console.log(h-6);
+    // console.log(m/60);
+    // console.log(h-6);
     var val = (m/60 + h);
     val = Math.min(Math.max(parseInt(val), 6), 21);
 
-    
-    console.log(val);
+
+    // console.log(val);
     d3.select('#slider').call(
         d3.slider().value(val).on("slide", function(evt, value) 
         {

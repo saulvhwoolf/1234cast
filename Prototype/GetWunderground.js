@@ -3,30 +3,30 @@
 
 var center = 1;
   
-function addClickables(center){
+function addClickables(){
   leftBoxElement = document.getElementById('box1');
   if (leftBoxElement) 
   {
     leftBoxElement.addEventListener('click', function() {
       if(center > 0)
         center --;
-      updateScreen(center);
+      updateScreen();
     });
   }
   rightBoxElement = document.getElementById('box3');
   if (rightBoxElement) 
   {
     rightBoxElement.addEventListener('click', function() {
-      if(center< 10)
+      if(center< 2)
         center ++;
-      updateScreen(center);
+      updateScreen();
     });
   }
 }
 
 
 
-function updateScreen(center) {
+function updateScreen() {
   var time = 12;
   if(center == 1)
   {
@@ -40,7 +40,7 @@ function updateScreen(center) {
     "<div class = 'box' id = 'box1'> </div>" ;
     // console.log(weatherData.getDay(center-1));
 
-    document.getElementById("box1").innerHTML = "" + weatherData.getDay(center-1).miniString();
+    document.getElementById("box1").innerHTML = "<div class = 'displayImage'>" +  weatherData.getDay(center-1).miniString()+ "</div>" ;
   }
   else
   {
@@ -53,7 +53,7 @@ function updateScreen(center) {
   {
     document.getElementById("boxContainer3").innerHTML = weatherData.getDay(center+1).getDate()+ 
     "<div class = 'box' id = 'box3'> </div>" ;
-    document.getElementById("box3").innerHTML = "" + weatherData.getDay(center+1).miniString();
+    document.getElementById("box3").innerHTML = "<div class = 'displayImage'>" + weatherData.getDay(center+1).miniString() + "</div>" ;
   }
   else
   {
@@ -63,11 +63,13 @@ function updateScreen(center) {
 
   document.getElementById("boxContainer2").innerHTML = weatherData.getDay(center).getDate()+ 
   "<div class = 'box' id = 'mainBox'> </div>" ;
-  document.getElementById("mainBox").innerHTML = "<div id = 'displayText'></div><div id = 'displayImage'></div>";
-  document.getElementById("displayText").innerHTML = "<br><br>"+weatherData.getDay(center).toString(time);
+  document.getElementById("mainBox").innerHTML = "<div id = 'displayText'></div><div class = 'displayImage' id = 'displayImage'></div>";
+  document.getElementById("displayText").innerHTML = "<br><br>"+weatherData.getDay(hoursPast+1).toString(time);
   document.getElementById("displayImage").innerHTML = weatherData.getDay(center).miniString();
-  addClickables(center);
-  d3.select(".sliderDisplay").html(sliderData(sliderTime, center ));
-  d3.select(".sliderDisplayTime").html(getSliderTime(sliderTime));
+
+  adjustIcons(center);
+
+
+  addClickables();
   // displayBar(center);
 }

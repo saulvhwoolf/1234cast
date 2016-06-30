@@ -114,8 +114,8 @@ return function module() {
           handle1.style("left", formatPercent(scale(value)));
           drag.on("drag", onDragHorizontal);
         }
+        
         sliderLength = parseInt(div.style("width"), 10);
-
 
       } else { // Vertical
 
@@ -177,7 +177,7 @@ return function module() {
 
           svg.attr({
             width: sliderLength + margin * 2,
-            height: 100
+            height: margin
           });
 
           if (axis.orient() === "top") {
